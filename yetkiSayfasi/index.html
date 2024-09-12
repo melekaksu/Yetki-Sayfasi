@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yetki Yönetimi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <img src="image/logo-icon.png" alt="logo icon">
+        </div>
+        <div class="company-name">
+            <h6>ER-PALANDÖKEN GIDA TEKS. İNŞ. TAAH. SAN. TİC. LTD. ŞTİ.</h6>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="text-center text-primary">YETKİ YÖNETİM PANELİ</h2>
+        <div class="d-flex justify-content-end new-user-btn">
+            <button class="btn btn-primary" onclick="openNewUserForm()">Yeni Kullanıcı Oluştur</button>
+        </div>
+
+        <div class="card user-list">
+            <div class="card-body">
+                <h5 class="card-title text-center">KULLANICILAR</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı Adı</th>
+                            <th>Yetkiler</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <tr id="user1">
+                            <td>Kullanıcı 1</td>
+                            <td>Nakit, Kredi Kartı, Açık Hesap</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm" onclick="editUser('Kullanıcı 1')">Yetki Ver</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('user1')">Sil</button>
+                                <button class="btn btn-outline-warning btn-sm" onclick="makePassive('user1')">Pasif Yap</button>
+                            </td>
+                        </tr>
+                        <tr id="user2">
+                            <td>Kullanıcı 2</td>
+                            <td>Saatlik Satışlar, En Çok Satan Ürünler</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm" onclick="editUser('Kullanıcı 2')">Yetki Ver</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('user2')">Sil</button>
+                                <button class="btn btn-outline-warning btn-sm" onclick="makePassive('user2')">Pasif Yap</button>
+                            </td>
+                        </tr>
+                        <tr id="user3">
+                            <td>Kullanıcı 3</td>
+                            <td>Nakit, Online Kasa</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm" onclick="editUser('Kullanıcı 3')">Yetki Ver</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('user3')">Sil</button>
+                                <button class="btn btn-outline-warning btn-sm" onclick="makePassive('user3')">Pasif Yap</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast mesajı -->
+    <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="toastMessage">
+        <div class="d-flex">
+            <div class="toast-body">
+                İşlem başarılı!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+  
+    <!-- Kullanıcı Silme Onay Modali -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmModalLabel">Kullanıcıyı Sil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    Kullanıcıyı silmek istediğinizden emin misiniz?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Evet, Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kullanıcı Pasif Yapma Onay Modali -->
+    <div class="modal fade" id="passiveConfirmModal" tabindex="-1" aria-labelledby="passiveConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passiveConfirmModalLabel">Kullanıcıyı Pasif Yap</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    Kullanıcıyı pasif yapmak istediğinizden emin misiniz?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                    <button type="button" class="btn btn-warning" id="confirmPassiveBtn">Evet, Pasif Yap</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
